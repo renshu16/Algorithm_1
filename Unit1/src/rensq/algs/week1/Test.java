@@ -1,5 +1,4 @@
-import rensq.algs.week1.QuickFindWeightQU;
-import rensq.algs.week1.SocialNetworkConnQU;
+package rensq.algs.week1;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -12,7 +11,8 @@ public class Test {
     public static void main(String[] args) {
 //        testQF();
 //        workTest1();
-        wordTest2();
+//        workTest2();
+        workTest3();
     }
 
     public static void testQF(){
@@ -53,12 +53,24 @@ public class Test {
         }
     }
 
-    public static  void wordTest2(){
+    public static  void workTest2(){
         QuickFindWeightQU find = new QuickFindWeightQU(10);
         find.union(1, 2);
         find.union(1, 4);
         find.union(4, 6);
         find.union(5, 2);
         System.out.println(find.find(2));
+    }
+
+    public static void workTest3(){
+        Successor successor = new Successor(10);
+        successor.test(0);
+        successor.test(5);
+        successor.test(3);
+        successor.test(4);
+        successor.test(5);
+        successor.test(7);
+        successor.test(8);
+        successor.test(9);
     }
 }

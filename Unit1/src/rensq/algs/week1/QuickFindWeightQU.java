@@ -10,7 +10,6 @@ public class QuickFindWeightQU implements QuickFind {
     int max[];
     int count;
 
-
     public QuickFindWeightQU(int n){
         ids = new int[n];
         sz = new int[n];
@@ -23,7 +22,7 @@ public class QuickFindWeightQU implements QuickFind {
         }
     }
 
-    private int root(int i){
+    public int root(int i){
         while (i != ids[i]){
             i = ids[i];
         }
@@ -45,19 +44,22 @@ public class QuickFindWeightQU implements QuickFind {
 
     @Override
     public void union(int p, int q) {
-        int rootOfp = root(p);
-        int rootOfq = root(q);
-        if (rootOfp == rootOfq) return;
-        if (sz[rootOfp] > sz[rootOfq]){
-            ids[rootOfq] = rootOfp;
-            sz[rootOfp] += sz[rootOfq];
+        int i = root(p);
+        int j = root(q);
+        if (i == j) return;
+        if (sz[i] > sz[j]){
+            ids[j] = i;
+            sz[i] += sz[j];
         }else{
-            ids[rootOfp] = rootOfq;
-            sz[rootOfq] += sz[rootOfp];
+            ids[i] = j;
+            sz[j] += sz[i];
         }
-        //max[root(p)] = max[root(p)] > max[root(q)] ? max[root(p)] : max[root(q)];
+        if(max[i] > max[j]){
+            max[j] = max[i];
+        } else{
+            max[i] = max[j];
+        }
         count --;
-        System.out.println("p:"+p+" -- q:"+q +"; count:"+count);
-        System.out.println("max["+rootOfp+"]" + "= " + (p > q ? p : q));
+        //System.out.println("p:"+p+" -- q:"+q +"; count:"+count);
     }
 }
